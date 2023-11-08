@@ -1,0 +1,476 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		*{
+			margin:0px;
+		}
+		body{
+			font-family:boulder;
+			height:100%;
+			width:100vw;
+		}
+		
+		#start-company{
+			
+			padding:20px;
+			height:200px;
+			box-shadow:0 0 10px rgba(0,0,0,0.2);
+			border-radius:12px;
+		}
+		#choose-logo{
+			
+			display:none;
+			padding:20px;
+			box-shadow:0 0 10px rgba(0,0,0,0.2);
+			border-radius:12px;
+			text-align:left;
+		}
+		#co-founder{
+			display:none;
+			padding:20px;
+			box-shadow:0 0 10px rgba(0,0,0,0.2);
+			border-radius:12px;
+			text-align:left;
+		}
+		#take-loan{
+			
+			display:none;
+			padding:20px;
+			height:100px;
+			display:block;
+			box-shadow:0 0 10px rgba(0,0,0,0.2);
+			border-radius:12px;
+		}
+		input{
+            margin-top:5px;
+			height:30px;
+			width:100%;
+		}
+		button.btn-outline{
+			margin-top:5px;
+			height:30px;
+			width:49%;
+			border-radius:4px;
+			border:1px solid #202020;
+			background-color:transparent;
+			color:#202020;
+			border-radius:50px;
+		}
+		button, button.btn-fill{
+			margin-top:5px;
+			height:30px;
+			width:49%;
+			border-radius:4px;
+			border:1px solid #202020;
+			background-color:#202020;
+			color:#ffffff;
+			border-radius:50px;
+		}
+		button.btn-round{
+			margin-top:5px;
+			height:30px;
+			width:20%;
+			border-radius:50px;
+			border:1px solid #2164F3;
+			background-color:transparent;
+			color:#2164F3;
+			font-weight:bold;
+		}
+		button.btn-round-fill{
+			margin-top:5px;
+			height:30px;
+			width:20%;
+			border-radius:50px;
+			border:1px solid #2164F3;
+			background-color:#2164F3;
+			color:#FFFFFF;
+			font-weight:bold;
+		}
+		div.header{
+			
+			height:20px;
+			font-weight:bold;
+			font-size:20px;
+			text-align:center;
+			background-color:#202020;
+			color:#FFFFFF;
+			padding:10px;
+		}
+		div.main{
+			
+		}
+		
+		.sub-header{
+			
+			margin:20px 0;
+			font-weight:bold;
+			color:#2164F3;
+			padding:10px;
+			box-shadow:0 0 10px rgba(0,0,0,0.2);
+			border-radius:12px;
+		}
+		span{
+			color:lightgreen;
+		}
+		.audience{
+			color:#202020;
+		}
+		b{
+			color:#2164F3;
+		}
+		#loanShark{
+			margin:0;
+		}
+		span.prompt{
+			padding-right:10px;
+			color:#202020;
+		}
+		div.close{
+			float:right;
+		}
+		button.close-btn{
+			border-radius:50px;
+			width:25px;
+			height:25px;
+			margin:0;
+			font-size:20px;
+			background-color:#2164F3;
+			border:none;
+		}
+		button.wide-btn{
+		  height:30px;
+		  width:100%;
+		  background-color:transparent;
+		  border-radius:50px;
+		  border:none;
+		  color:blue;
+		  font-weight:bold;
+		}
+		hr{
+      opacity:0.3;
+		}
+	</style>
+</head>
+<body>
+	<script>
+	let takeLoan1=false;
+	let takenLoan2=false;
+	let takenLoan3=false;
+	var borrowed1=0;
+	var borrowed2=0;
+	var borrowed3=0;
+	var started=false;
+	let logoDesigned=false;
+	let offer=0;
+	let shares=0;
+	let myshares=100;
+	hasCofounder=false;
+	cofounderShares=0;
+	investorShares=0;
+	
+	window.onload=function(){
+		document.getElementById("take-loan").style.display="none";
+		setInterval(work,200);
+
+	};
+	    var startup = "";
+	    var valuation=0;
+	    let currency="$";
+	    let memorable=false;
+	    var potentialUsers=0;
+	    var currentUsers=0;
+	    let repayment = 0;
+	    let loanAmount=0;
+	    let currentLoan=0;
+	    let pay=0;
+	    let hasMoney=false;
+	    
+		function start(){
+			startup = document.getElementById("company").value;
+			if(startup.length<=7){
+				memorable=true;
+				potentialUsers+=(16*startup.length);
+			}
+			else{
+				memorable=false;
+				potentialUsers+=(3*startup.length);
+			}
+			
+			started=true;
+			takenLoan1=false;
+			takenLoan2=false;
+			takenLoan3=false;
+			
+		document.getElementById("biz").innerHTML 
+		=startup;
+
+		if(started){
+document.getElementById("start-company").style.display="none";
+document.getElementById("take-loan").style.display="block";
+		}
+		updateCompany();
+		};
+		
+		function takeLoan(){
+			loanAmount =
+			document.getElementById("loan").value;
+			if(loanAmount>0 && started){
+				if(!hasCofounder){
+					if(loanAmount<=50000){
+			if(!takenLoan1){
+			
+	   		if(((loanAmount*1)+borrowed1)<=50000){
+	   		  repayment = (loanAmount * (1 + 0.14));
+	   		  valuation += (loanAmount * 1);
+	   		  currentLoan += (repayment * 1);
+	   		  borrowed1+=(loanAmount*1);
+	   		}else{
+	   		  let remainingLoan = 50000 - borrowed1
+	   		 if(remainingLoan===0){
+	   		   alert("You don't qualify for a loan at this time. Please try again later")
+	   		 }
+	   		 else{
+	   		    alert("You can only borrow upto $" + remainingLoan + " at the moment.");
+	   		 }
+	   		}
+	   		
+	   		updateCompany();
+	   		document.getElementById("loan").value="";
+	   		
+	   		if(borrowed1>50000){
+	   			takenLoan1=true;
+	   		}
+	   		else{
+	   			takeLoan1=false;
+	   		}
+			}
+			else{
+				alert("You don't qualify for a loan at this moment.");
+			}
+			if(valuation>0){
+				hasMoney=true;
+			}else{
+				hasMoney=false;
+			}
+					}
+					else{
+						if(borrowed1>=50000){
+							alert("You qualify for an amount upto " + (50000-borrowed1));
+						}else{
+alert("Your startup qualifies for capital upto $50,000");
+						}
+					}
+				}
+				else{
+					if(loanAmount<=1500000){
+	   		if(!takenLoan2){
+			repayment=(loanAmount*(1+0.14));
+			valuation+=(loanAmount*1);
+	   		currentLoan+=(repayment*1);
+	   		if(borrowed2==1500000){
+	   			takenLoan2=true
+	   		}
+	   		else{
+	   			takeLoan2=false;
+	   		}
+			}
+			else{
+				alert("You don't qualify for a loan at this moment.");
+			}
+			if(valuation>0){
+				hasMoney=true;
+			}
+				updateCompany();
+					}
+					else{
+						if(loanAmount>1500000){
+							alert("You qualify for an amount upto " + (1500000-borrowed2));
+						}else{
+alert("Your startup qualifies for capital upto $1500,000");
+						}
+					}
+				}
+			}
+			else{
+				if(!started){
+			alert("Start a Company to qualify for a loan.");
+				}
+				else{
+					alert("Please enter a valid loan amount.");
+					}
+			}
+		};
+		
+		function repayLoan(){
+			loanAmount =
+			document.getElementById("loan").value;
+			if(currentLoan!=0 && loanAmount==""){
+			  alert("Please enter a valid amount!")
+			}
+			if(valuation>loanAmount){
+			currentLoan-=(loanAmount*1);
+			valuation-=(loanAmount*1);
+			updateCompany();
+			document.getElementById("loan").value="";
+			}
+			else{
+				if(currentLoan==0){
+alert("You don't owe the bank.");
+				}
+				else{
+alert("You company doesn’t have sufficient capital.");
+				}
+			}
+		};
+		
+		function payforwork(pay){
+			valuation-=(pay*1);
+			if(pay>=1000){
+				potentialUsers+=(16*pay/2);
+			}
+			else{
+				potentialUsers+=(3*pay/2);
+			}
+			document.getElementById("choose-logo").style.display="none";
+document.getElementById("co-founder").style.display="block";
+			updateCompany();
+		};
+		
+		function work(){
+			if(hasMoney && !logoDesigned){
+			document.getElementById("choose-logo").style.display="block";
+			document.getElementById("take-loan").style.display="none";
+			logoDesigned=true;
+			document.getElementById("co-founder").style.display="none";
+			}
+			updateCompany();
+		};
+		
+		function partner(offer,shares){
+			if(offer%4==0){
+				potentialUsers+=(offer/400);
+			}
+			else{
+				potentialUsers+=(offer+1)/4000;
+			}
+			if(myshares>shares){
+				valuation+=(offer*1);
+				document.getElementById("co-founder").style.display="none";
+				if(!hasCofounder){
+					myshares-=(shares*1);
+					hasCofounder=true;
+					cofounderShares=shares;
+				}
+				else{
+					cofounderShares-=(shares*1);
+					investorShares=shares;
+				}
+			}
+			updateCompany();
+		};
+		
+		function updateCompany(){
+	document.getElementById("networth").innerHTML=currency+valuation.toFixed(2);
+	document.getElementById("debt").innerHTML=currency+currentLoan.toFixed(2);
+	document.getElementById("potential-users").innerHTML=potentialUsers.toFixed(0);
+	document.getElementById("current-users").innerHTML=currentUsers.toFixed(0);
+		};
+		
+		function showBank(){
+			document.getElementById("take-loan").style.display="block";
+			
+			}
+			
+		function closeBank(){
+			document.getElementById("take-loan").style.display="none";
+		}
+		
+		
+	</script>
+	<div class="header">
+		TECH STARTUP SIMULATOR
+	</div>
+	<div class="main">
+	<div class="sub-header">
+		<div class="bizname">
+			Start-Up Name: <span id="biz" style="color:black"></span>
+		</div>
+		<div class="bizvalue">
+			Valuation: <span id="currency"></span>
+			<span id="networth"></span>
+		</div>
+		<br>
+		<div class="users">
+			Target Audience: 
+			<span id="potential-users" class="audience"></span>
+			<br>
+			Current App Users:
+			<span id="current-users" class="audience"></span>
+		</div>
+		<div>
+			Debt:
+			<span id="debt" style="color:red"></span>
+		</div>
+		<div id="loanShark"><br>
+			<span class="prompt">Get a Loan or Repay Loan?</span>
+			<button class="btn-round-fill" onclick="showBank()">Bank</button>
+		</div><br>
+		<hr>
+		<div>
+		  <button class="wide-btn">Company Overview >></button>
+		</div>
+	</div>
+	
+		<div id="take-loan">
+		Take out a new loan or repay ongoing debt.
+		<div class="close"><button class="close-btn" onclick="closeBank()">&times</button></div><br>
+		<input type="number" id="loan">
+		<button class="btn-fill" onclick="takeLoan()">Borrow</button>
+		<button class="btn-outline" onclick="repayLoan()" style="float:right">Repay</button>
+		</div>
+	<br>
+	<div id="start-company">
+		
+		Choose a company name.<br>
+		<input type="text" id="company">
+		<button onclick="start()">Next</button>
+	</div>
+	<div id="choose-logo">
+		Your company should have a logo.<br><br>
+		<b>John Miller, your high school buddy says he can design the logo. However, he does not have any design experience.</b>
+		<br><i>
+		Price: $25<br>
+		Experience: None<br></i>
+		<button onclick="payforwork(25)">Hire</button>
+	<br><br>
+		<b>Sheldon Todd is a professional graphic designer with more than 8 years of experience in brand identity design.</b>
+		<br><i>
+		Price: $4800<br>
+		Experience: 8 Years<br></i>
+		<button onclick="payforwork(4800)">Hire</button>
+		<br><br>
+		<b>Buy Graphic Design software and enroll for an online design course so you can design the logo yourself.</b>
+		<br><i>
+		Price: $730<br>
+		Experience: 1 Year<br></i>
+		<button onclick="payforwork(730)" class="btn-fill">Buy</button>
+	</div>
+		<div id="co-founder">
+		You receive emails from people who heard you were starting your own company. They wish to join as co-founders.<br><br>
+		<b>Jack Frost has a Business Degree from Havard University and his father is a successful wealthy businessman. He also added that he would like to be appointed as CEO.</b>
+		<br><i>
+		Offer: $45000<br>
+		Request: 50% Shares<br></i>
+		<button onclick="partner(45000,50)">Accept</button>
+	<br><br>
+		<b>Ryan Whitmore is a successful entrepreneur who previously sold his first startup for $88million at the age of 16. Ryan wants to be the majority shareholder but wants you to continue being CEO.</b>
+		<br><i>
+		Offer: $3,000,000<br>
+		Request: 90% Shares<br></i>
+		<button onclick="partner(3000000,90)">Accept</button>
+	</div>
+	</div>
+</body>
+</html>
